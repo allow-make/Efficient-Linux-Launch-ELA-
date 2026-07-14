@@ -1,20 +1,14 @@
-
-name: Build ELA
+name: Build ELA for Windows
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
   workflow_dispatch:
 
 jobs:
   build:
-    name: Build on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+    name: Build on Windows
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
@@ -25,32 +19,17 @@ jobs:
         with:
           go-version: '1.21'
 
-      - name: Set up MinGW (Windows)
-        if: runner.os == 'Windows'
+      - name: Setup MinGW
         run: |
           choco install mingw -y
           echo "C:\ProgramData\chocolatey\bin" >> $GITHUB_PATH
 
-      - name: Install dependencies (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt update
-          sudo apt install -y libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev
-
       - name: Build
         run: |
           go mod download
-          go build -o bin/ela-gui cmd/ela/main.go
+          go build -o bin/ela-gui.exe ./cmd/ela
 
-      - name: Upload artifact (Linux)
-        if: runner.os == 'Linux'
-        uses: actions/upload-artifact@v4
-        with:
-          name: ela-linux
-          path: bin/ela-gui
-
-      - name: Upload artifact (Windows)
-        if: runner.os == 'Windows'
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ela-windows
