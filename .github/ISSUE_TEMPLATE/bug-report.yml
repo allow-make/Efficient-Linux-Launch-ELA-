@@ -1,0 +1,126 @@
+name: 🐛 Bug Report
+description: Report a problem to ELA
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ⚠️ Before submitting
+        - Please check existing Issues to avoid duplicates
+        - Make sure you are using the latest version of ELA
+        - Provide as much detail as possible
+
+  - type: input
+    id: version
+    attributes:
+      label: What version are you using?
+      description: Enter ELA version number or commit hash
+      placeholder: e.g. v1.0.0 or 15a4b7c
+    validations:
+      required: true
+
+  - type: input
+    id: function
+    attributes:
+      label: Which feature were you using when you encountered the problem?
+      description: e.g. starting Linux, downloading images, registry merge, terminal input, GUI projection, etc.
+      placeholder: e.g. Stuck when starting Ubuntu
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_type
+    attributes:
+      label: In your own words, what kind of problem is this?
+      description: Describe the nature of the problem
+      placeholder: e.g. crash, freeze, won't start, display error, network issue, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Can you describe the problem and its background in detail?
+      description: Include steps to reproduce, when it happens, and what happened before/after
+      placeholder: |
+        e.g.
+        1. I started ELA and selected Ubuntu 22.04
+        2. After the terminal appeared, I typed ls
+        3. The screen froze and I couldn't type anything
+        4. This didn't happen before; it started after the latest update
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Can you provide a screenshot?
+      description: Drag and drop screenshots or recordings here, or describe why you can't provide one
+      placeholder: Drag screenshot here or describe the situation
+    validations:
+      required: false
+
+  - type: input
+    id: distro
+    attributes:
+      label: Which distribution were you running when this issue occurred?
+      description: Enter the distribution name and version
+      placeholder: e.g. Ubuntu 22.04 LTS, Arch Linux 2026.07
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: What was your ELA configuration when starting?
+      description: Describe your startup settings, mode, architecture, etc.
+      placeholder: |
+        e.g.
+        - Mode: Hyper
+        - Architecture: ARM64
+        - GUI Preferred: Enabled
+        - Network: Direct
+    validations:
+      required: true
+
+  - type: dropdown
+    id: from_registry
+    attributes:
+      label: Did you start this system from the ELRA registry?
+      options:
+        - Yes, started from ELRA registry
+        - No, started directly
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: settings_used
+    attributes:
+      label: Which settings did you have enabled?
+      description: List the settings you turned on
+      placeholder: |
+        e.g.
+        - GUI Preferred: Enabled
+        - Silent Boot: Enabled
+        - Auto-inject driver: Enabled
+        - Network Direct: Disabled
+        - Other: Custom package path set
+    validations:
+      required: false
+
+  - type: textarea
+    id: misc
+    attributes:
+      label: Apart from that, did anything else happen when you started ELA?
+      description: Anything you think might be relevant but wasn't asked
+      placeholder: |
+        e.g.
+        - This issue doesn't happen every time; sometimes it works fine
+        - I'm not using the official image; I built my own .elra
+        - My PC has dual monitors, might be related to display
+        - I'm on a Windows Insider build
+        - Any other information you think is relevant
+    validations:
+      required: false
