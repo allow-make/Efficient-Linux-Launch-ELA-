@@ -1,85 +1,82 @@
-# ELA - Efficient Linux Launcher
+ELA - Efficient Linux Launcher
 
-> A fast Linux launcher built with C, C++ and Go, designed for managing the state, instances, and runtime of multiple Linux distributions.
+A fast Linux launcher built with C, C++ and Go, designed for managing the state, instances, and runtime of multiple Linux distributions.
 
-[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
-[![PR Checks](https://github.com/allow-make/Efficient-Linux-Launch-ELA-/actions/workflows/pr-checks.yml/badge.svg)](https://github.com/allow-make/Efficient-Linux-Launch-ELA-/actions/workflows/pr-checks.yml)
-[![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://go.dev/)
-[![Haxe Version](https://img.shields.io/badge/Haxe-4.3+-EA8220?style=flat&logo=haxe)](https://haxe.org/)
+https://img.shields.io/badge/License-GPL%20v2-blue.svg
+https://github.com/allow-make/Efficient-Linux-Launch-ELA-/actions/workflows/pr-checks.yml/badge.svg
+https://img.shields.io/badge/C-00599C?style=flat&logo=c&logoColor=white
+https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white
+https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white
 
 ---
 
-## 🚀 What is ELA?
+🚀 What is ELA?
 
-ELA (**E**fficient **L**inux **A**uncher) is a fast, lightweight Linux launcher for Windows.
+ELA (Efficient Linux Launcher) is a fast, lightweight Linux launcher for Windows.
 
 It allows you to:
-- **Launch multiple Linux distributions** (Ubuntu, Debian, Arch, Kali, etc.)
-- **Switch between terminal and GUI projection** modes
-- **Manage instances** via the ELRA registry
-- **Package instances** into portable `.elra` files
-- **Run on both x86_64 and ARM64** architectures
 
-> **ELA does not draw the terminal or the GUI.**  
-> It projects the real Linux output (text or framebuffer) into a window.
+· Launch multiple Linux distributions (Ubuntu, Debian, Arch, Kali, etc.)
+· Switch between terminal and GUI projection modes
+· Manage instances via the ELRA registry
+· Package instances into portable .elra files
+· Run on both x86_64 and ARM64 architectures
+
+ELA does not draw the terminal or the GUI.
+It projects the real Linux output (text or framebuffer) into a window.
 
 ---
 
-## 🧠 Architecture
+🧠 Architecture
 
 ```
-
 Linux Kernel
-↓
+    ↓
 LS (Linux Script) – captures output
-↓
+    ↓
 Lhyper – transport channel
-↓
+    ↓
 HL (Hyper Link) – sequence protocol
-↓
+    ↓
 ELA (Windows launcher) – displays output
-↓
+    ↓
 ELRA – registry management
-
 ```
 
-### Key Components
+Key Components
 
-| Component | Language | Role |
-|-----------|----------|------|
-| **ELA.exe** | C + Go + Haxe | Main launcher, UI, terminal rendering |
-| **LS** | C | Linux output capture |
-| **Lhyper** | Go | Transport channel |
-| **HL** | Protocol | Sequence language (text, API, bridge) |
-| **ELRA** | C + SQLite | Instance registry |
-
----
-
-## 📦 Supported Distributions
-
-| Category | Distributions |
-|----------|---------------|
-| **Mainstream** | Ubuntu, Debian, Fedora, openSUSE |
-| **Geek** | Arch Linux, Gentoo, NixOS |
-| **Security** | Kali Linux |
-| **Lightweight** | Alpine Linux |
-| **Chinese** | Deepin |
-
-> **More distributions can be added via custom `.elra` packages.**
+Component Language Role
+ELA.exe C / C++ + OpenGL Main launcher, UI, terminal rendering
+LS C Linux output capture
+Lhyper Go Transport channel
+HL Protocol Sequence language (text, API, bridge)
+ELRA C + SQLite Instance registry
 
 ---
 
-## 🛠️ Build from Source
+📦 Supported Distributions
 
-### Prerequisites
+Category Distributions
+Mainstream Ubuntu, Debian, Fedora, openSUSE
+Geek Arch Linux, Gentoo, NixOS
+Security Kali Linux
+Lightweight Alpine Linux
+Chinese Deepin
 
-- Go 1.21+
-- Haxe 4.3+
-- C compiler (GCC/MinGW)
-- OpenGL development libraries
-- SQLite3
+More distributions can be added via custom .elra packages.
 
-### Build
+---
+
+🛠️ Build from Source
+
+Prerequisites
+
+· Go 1.21+
+· C compiler (GCC/MinGW)
+· OpenGL development libraries
+· SQLite3
+
+Build
 
 ```bash
 # Clone the repository
@@ -89,11 +86,7 @@ cd Efficient-Linux-Launch-ELA-
 # Build Go components
 go build -o bin/ela.exe ./cmd/ela/...
 
-# Build Haxe components
-haxe build-cpp.hxml
-haxe build-jvm.hxml
-
-# Build C components
+# Build C/C++ components
 mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
 make -j$(nproc)
@@ -155,7 +148,6 @@ Language Policy
 Language Status
 C ✅ Strongly Preferred
 Go ✅ Strongly Preferred
-Haxe (.hx) ✅ Preferred
 C++ 🟡 Accepted (Strict)
 JVM Languages ❌ Not Recommended (JNI is slow)
 Scripting Languages ❌ Avoid
